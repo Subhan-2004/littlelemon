@@ -9,6 +9,8 @@ import SwiftUI
 
 
 struct Home: View {
+    let persistence = PersistenceController.shared
+
     var body: some View {
         NavigationStack {
             TabView {
@@ -22,6 +24,7 @@ struct Home: View {
                         Label("Profile", systemImage: "square.and.pencil")
                     }
             }
+            .environment(\.managedObjectContext, persistence.container.viewContext)
             .navigationBarBackButtonHidden(true) // Hide back button
         }
     }
@@ -31,3 +34,5 @@ struct Home: View {
 #Preview {
     Home()
 }
+
+
